@@ -8,8 +8,8 @@ const PORT = process.env.PORT || 3000
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
 
+// CRUD USER
 // CREATE
-app.post("/reports")
 app.post("/users", async (req, res) => {
     try {
         const { email, nome, reports } = req.body
@@ -107,6 +107,99 @@ app.delete("/users/:id", async (req, res) => {
         })
 
         res.json(deletedUser)
+    } catch (error) {
+        res.status(500).json({
+            message: "Something went wrong",
+        })
+    }
+})
+
+// CRUD REPORTS
+// CREATE
+app.post("/reports", async (req, res) => {
+    try {
+        const { content, userId, medicationId } = req.body
+
+        const newReport = await prisma.report.create({
+            data: {
+                content,
+                userId,
+                medicationId
+            }
+        })
+
+        res.json(newReport)
+    } catch (error: any) {
+        console.log(error.message)
+        res.status(500).json({
+            message: "Internal Server Error",
+        })
+    }
+})
+
+// READ
+app.get("/reports", async (req, res) => {
+    try {
+        const reports = await prisma.report.findMany({
+        })
+
+        res.json(reports)
+    } catch (error) {
+        res.status(500).json({
+            message: "Something went wrong",
+        })
+    }
+})
+
+
+// CRUD MEDICATIONS
+// CREATE
+app.post("/medications", async (req, res) => {
+    try {
+        const { nome, quantity } = req.body
+
+        const newMed = await prisma.medication.create({
+            data: {
+                nome,
+                quantity
+            },
+        })
+
+        res.json(newMed)
+    } catch (error: any) {
+        console.log(error.message)
+        res.status(500).json({
+            message: "Internal Server Error",
+        })
+    }
+})
+
+// READ
+app.get("/medications", async (req, res) => {
+    try {
+        const medications = await prisma.medication.findMany({
+            include: {
+                reports: true,
+            },
+        })
+
+        res.json(medications)
+    } catch (error) {
+        res.status(500).json({
+            message: "Something went wrong",
+        })
+    }
+})
+
+app.get("/medications/onlyNames", async (req, res) => {
+    try {
+        const medications = await prisma.medication.findMany({
+            select: {
+                nome: true
+            }
+        })
+
+        res.json(medications)
     } catch (error) {
         res.status(500).json({
             message: "Something went wrong",

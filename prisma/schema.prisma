@@ -7,7 +7,7 @@ generator client {
 
 model Medication {
   id  String  @id @default(uuid())
-  nome     String
+  nome  String  @unique
   quantity Int
   reports Report[]
 }
@@ -24,9 +24,9 @@ model Report {
   createdAt   DateTime     @default(now())
   content     String
   user        User         @relation(fields: [userId], references: [id])
-  userId      String          
+  userId      String  @unique          
   medication   Medication? @relation(fields: [medicationId], references: [id])
-  medicationId String? 
+  medicationId String?  @unique
 }
 
 datasource db {
