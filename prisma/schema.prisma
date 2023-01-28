@@ -24,9 +24,9 @@ model Report {
   createdAt   DateTime     @default(now())
   content     String
   user        User         @relation(fields: [userId], references: [id])
-  userId      String  @unique          
+  userId      String     
   medication   Medication? @relation(fields: [medicationId], references: [id])
-  medicationId String?  @unique
+  medicationId String?  
 }
 
 datasource db {
