@@ -9,6 +9,10 @@ model Medication {
   id  String  @id @default(uuid())
   nome     String
   quantity Int
+  estoque String
+  data_inicio String
+  data_fim String
+  horarios String[]
   reports Report[]
 }
 
