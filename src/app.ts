@@ -262,7 +262,7 @@ app.get("/medications/onlyNames", async (req, res) => {
 // UPDATE
 app.put("/medications/:id", async (req, res) => {
     try {
-        const { nome, quantity, estoque, dataInicio, dataFim, horario } = req.body
+        const { nome, tipo, quantity, estoque, dataInicio, dataFim, horario } = req.body
         const { id } = req.params
 
         const updatedMedication = await prisma.medication.update({
@@ -271,6 +271,7 @@ app.put("/medications/:id", async (req, res) => {
             },
             data: {
                 nome,
+                tipo,
                 quantity,
                 estoque,
                 dataInicio,
