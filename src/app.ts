@@ -1,12 +1,13 @@
 import express from "express"
 import prisma from "./prisma" // importing the prisma instance we created.
+import cors from 'cors';
 
-const app = express()
-app.use(express.json())
 
+const app = express();
+app.use(cors());
 const PORT = process.env.PORT || 3000
 
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
+app.listen(PORT, () => console.log(`CORS-enabled web server listening on port ${PORT}`))
 
 //CRUD USER
 // CREATE
