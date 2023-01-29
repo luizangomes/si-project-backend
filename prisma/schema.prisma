@@ -8,7 +8,12 @@ generator client {
 model Medication {
   id  String  @id @default(uuid())
   nome     String
+  tipo String
   quantity Int
+  estoque Int
+  dataInicio String
+  dataFim String
+  horario String[]
   reports Report[]
 }
 
