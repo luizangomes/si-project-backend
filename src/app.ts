@@ -203,16 +203,17 @@ app.delete("/reports/:id", async (req, res) => {
 // CREATE
 app.post("/medications", async (req, res) => {
     try {
-        const { nome, quantity, estoque, data_inicio, data_fim, horarios } = req.body
+        const { nome, tipo, quantity, estoque, dataInicio, dataFim, horario } = req.body
 
         const newMed = await prisma.medication.create({
             data: {
                 nome,
+                tipo,
                 quantity,
                 estoque,
-                data_inicio,
-                data_fim,
-                horarios
+                dataInicio,
+                dataFim,
+                horario
             },
         })
 
@@ -261,7 +262,7 @@ app.get("/medications/onlyNames", async (req, res) => {
 // UPDATE
 app.put("/medications/:id", async (req, res) => {
     try {
-        const { nome, quantity, estoque, data_inicio, data_fim, horarios } = req.body
+        const { nome, quantity, estoque, dataInicio, dataFim, horario } = req.body
         const { id } = req.params
 
         const updatedMedication = await prisma.medication.update({
@@ -272,9 +273,9 @@ app.put("/medications/:id", async (req, res) => {
                 nome,
                 quantity,
                 estoque,
-                data_inicio,
-                data_fim,
-                horarios
+                dataInicio,
+                dataFim,
+                horario
             },
         })
 
