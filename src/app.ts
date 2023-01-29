@@ -1,12 +1,14 @@
 import express from "express"
 import prisma from "./prisma" // importing the prisma instance we created.
+import cors from 'cors';
 
-const app = express()
-app.use(express.json())
 
+const app = express();
+app.use(cors());
 const PORT = process.env.PORT || 3000
 
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
+app.listen(PORT, () => console.log(`CORS-enabled web server listening on port ${PORT}`))
+
 
 // CRUD USER
 // CREATE
@@ -156,12 +158,16 @@ app.get("/reports", async (req, res) => {
 // CREATE
 app.post("/medications", async (req, res) => {
     try {
-        const { nome, quantity } = req.body
+        const { nome, quantity, dosage, initialDate, endDate, times } = req.body
 
         const newMed = await prisma.medication.create({
             data: {
                 nome,
-                quantity
+                quantity,
+                dosage,
+                initialDate,
+                endDate,
+                times,
             },
         })
 

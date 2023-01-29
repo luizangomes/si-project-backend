@@ -9,6 +9,10 @@ model Medication {
   id  String  @id @default(uuid())
   nome  String  @unique
   quantity Int
+  dosage String
+  initialDate String
+  endDate String
+  times String
   reports Report[]
 }
 
