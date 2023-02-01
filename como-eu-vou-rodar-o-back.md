@@ -7,6 +7,7 @@ Com isso em mente, lembrando que eu uso o WSL do Ubuntu, eu vou mostrar os passo
 Lmebre-se que este deve estar rodando no fundo sempre que queremos que o nosso Backend funcione.
 
 Primeiro inicializamos o servidor do **Postgresql** e entramos no psql:
+
 ``
 sudo service postgresql start
 
