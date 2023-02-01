@@ -10,26 +10,26 @@ Primeiro inicializamos o servidor do **Postgresql** e entramos no psql:
 
 ``
 sudo service postgresql start
-
 sudo -i -u postgres
-
 psql
 ``
 
 Se já possuímos um banco de dados rodamos:
+
 ``
 \c *nome-do-banco-de-dados*
 ``
 
 Se ainda não possuímos:
+
 ``
 CREATE DATABASE *nome-do-seu-banco-de-dados*;
 ``
 
 Como sabemos em qual porta um banco de dados específico está?
+
 ``
 \c banco-de-dados
-
 \conninfo
 ``
 
