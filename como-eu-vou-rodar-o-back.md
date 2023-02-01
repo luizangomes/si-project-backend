@@ -67,3 +67,7 @@ DATABASE_URL="postgresql://postgres:default@localhost:5432/sipb?schema=public"
  - **sipb** é o nome do banco de dados no **postgres**
 
 Assim, sinta-se a vontade de mudar em sua máquina esse endereço de acordo com seu login, senha do postgres e do nome de banco de dados que você criou no PostgreSQL
+
+
+## Lembrando que precisa ter o ts-node dev funcionando, devendo ser baixado antes:
+``npx ts-node-dev --respawn --transpile-only --debug ./src/app.ts ``
