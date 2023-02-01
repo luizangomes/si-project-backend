@@ -1,10 +1,12 @@
 import express from "express"
 import prisma from "./prisma" // importing the prisma instance we created.
 import cors from 'cors';
-
+import bodyParser from "body-parser";
 
 const app = express();
 app.use(cors());
+app.use(bodyParser.json())
+
 const PORT = process.env.PORT || 3000
 
 app.listen(PORT, () => console.log(`CORS-enabled web server listening on port ${PORT}`))
@@ -126,7 +128,7 @@ app.post("/reports", async (req, res) => {
             data: {
                 content,
                 userId,
-                medicationId
+                medicationId,
             }
         })
 
@@ -248,9 +250,32 @@ app.get("/medications/onlyNames", async (req, res) => {
     try {
         const medications = await prisma.medication.findMany({
             select: {
-                nome: true
+                nome: true,
+                id: true
             }
         })
+
+        res.json(medications)
+    } catch (error) {
+        res.status(500).json({
+            message: "Something went wrong",
+        })
+    }
+})
+
+app.get("/medications/:id", async (req, res) => {
+    try {
+        const { id } = req.params
+        const medications = await prisma.medication.findUnique({
+            where: {
+                id,
+            },
+            select: {
+                nome: true,
+                id: true
+            }
+        }
+        )
 
         res.json(medications)
     } catch (error) {

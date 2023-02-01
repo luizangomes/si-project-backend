@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Medication" ALTER COLUMN "horario" SET NOT NULL,
+ALTER COLUMN "horario" SET DATA TYPE TEXT;
