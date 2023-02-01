@@ -9,7 +9,9 @@ Lmebre-se que este deve estar rodando no fundo sempre que queremos que o nosso B
 Primeiro inicializamos o servidor do **Postgresql** e entramos no psql:
 ``
 sudo service postgresql start
+
 sudo -i -u postgres
+
 psql
 ``
 
@@ -26,6 +28,7 @@ CREATE DATABASE *nome-do-seu-banco-de-dados*;
 Como sabemos em qual porta um banco de dados específico está?
 ``
 \c banco-de-dados
+
 \conninfo
 ``
 
